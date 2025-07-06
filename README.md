@@ -1,18 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Auth Services
+
+This is a Next.js project bootstrapped with `create-next-app`, designed to demonstrate authentication services using NextAuth.js with GitHub and Google providers, as well as credential-based login.
+
+## Table of Contents
+
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Running the Development Server](#running-the-development-server)
+  - [Building for Production](#building-for-production)
+- [Configuration](#configuration)
+- [Project Structure](#project-structure)
+- [Authentication Providers](#authentication-providers)
+
+## Features
+
+- **Credential-based Authentication**: User login with email and password.
+- **OAuth Authentication**: Seamless login using GitHub and Google accounts.
+- **Next.js App Router**: Utilizes the latest Next.js features for routing and server components.
+- **Tailwind CSS**: For rapid UI development and styling.
+- **Custom Fonts**: Integration of Geist and Geist Mono fonts for a modern look.
+
+## Technologies Used
+
+- [Next.js](https://nextjs.org/) (v15.3.5)
+- [NextAuth.js](https://next-auth.js.org/) (v5.0.0-beta.29)
+- [React](https://react.dev/) (v19.0.0)
+- [React Icons](https://react-icons.github.io/react-icons/) (v5.5.0)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [ESLint](https://eslint.org/)
 
 ## Getting Started
 
-First, run the development server:
+Follow these instructions to set up and run the project locally.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Prerequisites
+
+Make sure you have the following installed:
+
+- Node.js (v18 or higher recommended)
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd auth.js
+   npm run dev
+   # or
+   yarn dev
+   # or
+   pnpm dev
+   # or
+   bun dev
+   ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
