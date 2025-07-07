@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { auth } from "@/root/auth";
-import UserProfileButton from "./UserProfileButton";
+import UserProfileButton from "../UserProfileButton";
+import LinkButton from "./LinkButton";
 
 const Navbar = async () => {
   const session = await auth();
@@ -22,9 +23,7 @@ const Navbar = async () => {
               />
             </>
           ) : (
-            <Link href="/login" className="font-semibold">
-              Login
-            </Link>
+            <LinkButton />
           )}
         </div>
       </nav>
