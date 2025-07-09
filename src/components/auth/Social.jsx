@@ -3,7 +3,7 @@
 import { Icon } from "@/lib/react-icons";
 import { Button } from "../ui/button";
 
-const Social = () => {
+export const Social = () => {
   return (
     <div className="w-full flex items-center gap-x-2">
       <div className="w-full">
@@ -19,5 +19,3 @@ const Social = () => {
     </div>
   );
 };
-
-export default Social;

@@ -5,8 +5,8 @@ export const metadata = {
   description: "Auth services using next auth, Github and Google providers",
 };
 
-const Login = () => {
+const LoginPage = () => {
   return <LoginForm />;
 };
 
-export default Login;
+export default LoginPage;

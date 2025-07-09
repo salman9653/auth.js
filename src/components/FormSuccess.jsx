@@ -1,6 +1,6 @@
 import { Icon } from "@/lib/react-icons";
 
-const FormSuccess = ({ message }) => {
+export const FormSuccess = ({ message }) => {
   if (!message) return null;
   return (
     <div className="bg-emerald-500/15 p-3  rounded-md flex items-center gap-x-2 text-sm text-emerald-500">
@@ -9,5 +9,3 @@ const FormSuccess = ({ message }) => {
     </div>
   );
 };
-
-export default FormSuccess;

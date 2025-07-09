@@ -4,9 +4,10 @@ import {
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
-import Header from "./Header";
-import Social from "./Social";
-import BackButton from "./BackButton";
+import { Header } from "./Header";
+import { Social } from "./Social";
+import { BackButton } from "./BackButton";
+import { DividerWithText } from "../DividerWithText";
 
 export const CardWrapper = ({
   children,
@@ -20,17 +21,17 @@ export const CardWrapper = ({
       <CardHeader>
         <Header label={headerLabel} />
       </CardHeader>
-      <CardContent>{children}</CardContent>
       {showSocial && (
-        <>
-          <CardFooter>
-            <Social />
-          </CardFooter>
-          <CardFooter>
-            <BackButton label={backButtonLabel} href={backButtonHref} />
-          </CardFooter>
-        </>
+        <CardContent>
+          <Social />
+          <DividerWithText text="or continue with" className="mt-4" />
+        </CardContent>
       )}
+      <CardContent>{children}</CardContent>
+
+      <CardFooter>
+        <BackButton label={backButtonLabel} href={backButtonHref} />
+      </CardFooter>
     </Card>
   );
 };
