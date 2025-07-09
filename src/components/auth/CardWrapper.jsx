@@ -21,14 +21,14 @@ export const CardWrapper = ({
       <CardHeader>
         <Header label={headerLabel} />
       </CardHeader>
+
+      <CardContent>{children}</CardContent>
       {showSocial && (
         <CardContent>
+          <DividerWithText text="or continue with" className="mb-4" />
           <Social />
-          <DividerWithText text="or continue with" className="mt-4" />
         </CardContent>
       )}
-      <CardContent>{children}</CardContent>
-
       <CardFooter>
         <BackButton label={backButtonLabel} href={backButtonHref} />
       </CardFooter>
