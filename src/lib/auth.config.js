@@ -7,7 +7,7 @@ const authConfig = {
   providers: [
     Credentials({
       async authorize(credentials) {
-        const validatedFields = LoginSchema.parse(credentials)
+        const validatedFields = LoginSchema.safeParse(credentials)
         if (validatedFields.success) {
           const { email, password } = validatedFields.data
           const user = await getUserByEmail(email)
