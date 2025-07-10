@@ -1,80 +1,124 @@
-# Auth Services
+# Next.js Authentication App
 
-This is a Next.js project bootstrapped with `create-next-app`, designed to demonstrate authentication services using NextAuth.js with GitHub and Google providers, as well as credential-based login.
-
-## Table of Contents
-
-- [Features](#features)
-- [Technologies Used](#technologies-used)
-- [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-  - [Running the Development Server](#running-the-development-server)
-  - [Building for Production](#building-for-production)
-- [Configuration](#configuration)
-- [Project Structure](#project-structure)
-- [Authentication Providers](#authentication-providers)
+A modern authentication service built with Next.js 15 and Auth.js (NextAuth). This application provides a complete authentication system with credential-based login and registration functionality.
 
 ## Features
 
-- **Credential-based Authentication**: User login with email and password.
-- **OAuth Authentication**: Seamless login using GitHub and Google accounts.
-- **Next.js App Router**: Utilizes the latest Next.js features for routing and server components.
-- **Tailwind CSS**: For rapid UI development and styling.
-- **Custom Fonts**: Integration of Geist and Geist Mono fonts for a modern look.
+- Credential Authentication : Email and password-based authentication
+- Protected Routes : Middleware-based route protection
+- Form Validation : Client and server-side validation using Zod
+- Database Integration : PostgreSQL database with Prisma ORM
+- Modern UI : Responsive design with Tailwind CSS and Radix UI components
+- Server Actions : Next.js server actions for form handling
 
-## Technologies Used
+## Tech Stack
 
-- [Next.js](https://nextjs.org/) (v15.3.5)
-- [NextAuth.js](https://next-auth.js.org/) (v5.0.0-beta.29)
-- [React](https://react.dev/) (v19.0.0)
-- [React Icons](https://react-icons.github.io/react-icons/) (v5.5.0)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [ESLint](https://eslint.org/)
+- Framework : Next.js 15 with App Router
+- Authentication : Auth.js (NextAuth v5)
+- Database : PostgreSQL
+- ORM : Prisma
+- Form Handling : React Hook Form with Zod validation
+- Styling : Tailwind CSS with Radix UI components
+- Password Hashing : bcryptjs
+
+## Project Structure
+
+```
+├── prisma/                # Prisma schema and 
+migrations
+├── public/                # Static assets
+├── src/
+│   ├── actions/           # Server actions for 
+authentication
+│   │   ├── login.js       # Login functionality
+│   │   └── register.js    # Registration 
+functionality
+│   ├── app/               # Next.js app router
+│   │   ├── (auth)/        # Authentication 
+routes
+│   │   ├── (protected)/   # Protected routes
+│   │   └── (root)/        # Public routes
+│   ├── components/        # React components
+│   │   ├── auth/          # Authentication 
+components
+│   │   └── ui/            # UI components
+│   ├── data/              # Data access layer
+│   ├── lib/               # Utility functions
+│   │   ├── auth.js        # Auth.js 
+configuration
+│   │   ├── auth.config.js # Auth providers 
+configuration
+│   │   └── db.js          # Database client
+│   ├── schemas/           # Zod validation 
+schemas
+│   └── middleware.js      # Authentication 
+middleware
+└── package.json           # Project dependencies
+```
 
 ## Getting Started
 
-Follow these instructions to set up and run the project locally.
-
 ### Prerequisites
 
-Make sure you have the following installed:
-
-- Node.js (v18 or higher recommended)
-- npm or yarn
+- Node.js 18+ and npm/yarn
+- PostgreSQL database
 
 ### Installation
 
-1. Clone the repository:
-   ```bash
-   git clone <repository-url>
-   cd auth.js
-   npm run dev
-   # or
-   yarn dev
-   # or
-   pnpm dev
-   # or
-   bun dev
-   ```
+1. Clone the repository
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+```
+git clone <repository-url>
+cd auth.js
+```
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+2. Install dependencies
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+npm install
+# or
+yarn install
+```
 
-## Learn More
+3. Set up environment variables
+   Create a .env file in the root directory with the following variables:
 
-To learn more about Next.js, take a look at the following resources:
+```
+DATABASE_URL="postgresql://
+username:password@localhost:5432/auth_db"
+NEXT_PUBLIC_APP_URL="http://localhost:3000"
+AUTH_SECRET="your-secret-key"
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. Set up the database
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+npx prisma generate
+npx prisma db push
+```
 
-## Deploy on Vercel
+5. Start the development server
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+npm run dev
+# or
+yarn dev
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+6. Open http://localhost:3000 in your browser
+
+## Authentication Flow
+
+1. Users can register with name, email, and password
+2. Passwords are securely hashed using bcryptjs
+3. Login with email and password
+4. Protected routes redirect unauthenticated users to the login page
+5. Authenticated users are redirected to the dashboard when accessing auth routes
+
+## Future Enhancements
+
+- Email verification
+- Social login providers (Google, GitHub, etc.)
+- Password reset functionality
+- User profile management
+- Role-based access control
