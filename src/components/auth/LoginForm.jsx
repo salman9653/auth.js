@@ -1,5 +1,5 @@
 "use client";
-import { useState, useTransition } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LoginSchema } from "@/schemas/zodSchema";
@@ -18,8 +18,19 @@ import { CardWrapper } from "@/components/auth/CardWrapper";
 import { FormError } from "@/components/FormError";
 import { FormSuccess } from "@/components/FormSuccess";
 import { loginFields } from "@/schemas/formFields";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export const LoginForm = () => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const urlError = searchParams.get("error");
+
+  useEffect(() => {
+    if (urlError) {
+      router.push("/authError");
+    }
+  }, [urlError]);
+
   const form = useForm({
     resolver: zodResolver(LoginSchema),
     defaultValues: {

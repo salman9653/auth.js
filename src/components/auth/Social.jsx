@@ -17,7 +17,7 @@ export const Social = () => {
       <div className="w-full">
         <Button
           size="lg"
-          className="w-full"
+          className="w-full cursor-pointer"
           variant="outline"
           onClick={() => onClick("google")}
         >
@@ -27,7 +27,7 @@ export const Social = () => {
       <div className="w-full">
         <Button
           size="lg"
-          className="w-full"
+          className="w-full cursor-pointer"
           variant="outline"
           onClick={() => onClick("github")}
         >

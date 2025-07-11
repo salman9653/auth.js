@@ -5,6 +5,10 @@ import authConfig from "@/lib/auth.config"
 import { getUserById } from "@/data/user";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
+    pages: {
+        signIn: "/login",
+        error: "/authError",
+    },
     events: {
         async linkAccount({ user }) {
             await db.user.update({
