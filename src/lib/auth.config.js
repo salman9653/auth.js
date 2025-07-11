@@ -1,3 +1,5 @@
+import Github from "next-auth/providers/github";
+import Google from "next-auth/providers/google";
 import Credentials from "next-auth/providers/credentials";
 import { LoginSchema } from "@/schemas/zodSchema";
 import { getUserByEmail } from "@/data/user";
@@ -5,6 +7,8 @@ import bcrypt from 'bcryptjs'
 
 const authConfig = {
   providers: [
+    Github,
+    Google,
     Credentials({
       async authorize(credentials) {
         const validatedFields = LoginSchema.safeParse(credentials)
@@ -17,7 +21,7 @@ const authConfig = {
         }
         return null
       }
-    })
+    }),
   ],
 }
 export default authConfig
