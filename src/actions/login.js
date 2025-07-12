@@ -28,6 +28,8 @@ export async function loginAction(formValue) {
 
     if (!existingUser.emailVerified) {
         const verificationToken = await generateVerificationToken(existingUser.email)
+
+        await sendVerificationEmail(verificationToken.email, verificationToken.token)
         return { success: 'Confirmation email sent again' }
     }
 

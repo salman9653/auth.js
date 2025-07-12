@@ -5,6 +5,7 @@ import { RegisterSchema } from "@/schemas/zodSchema";
 import { db } from '@/lib/db';
 import { getUserByEmail } from '@/data/user';
 import { generateVerificationToken } from '@/lib/tokens';
+import { sendVerificationEmail } from '@/lib/mail';
 
 export async function registerAction(formValue) {
     const validate = RegisterSchema.safeParse(formValue);
@@ -36,7 +37,9 @@ export async function registerAction(formValue) {
 
     const verificationToken = await generateVerificationToken(email)
 
+    await sendVerificationEmail(verificationToken.email, verificationToken.token)
+
     return {
-        success: 'User Created Successfully',
+        success: 'Confirmation Email Sent.',
     }
 }
