@@ -4,6 +4,7 @@ import bcrypt from 'bcryptjs'
 import { RegisterSchema } from "@/schemas/zodSchema";
 import { db } from '@/lib/db';
 import { getUserByEmail } from '@/data/user';
+import { generateVerificationToken } from '@/lib/tokens';
 
 export async function registerAction(formValue) {
     const validate = RegisterSchema.safeParse(formValue);
@@ -33,7 +34,7 @@ export async function registerAction(formValue) {
         }
     })
 
-    // Todo: send verification token email
+    const verificationToken = await generateVerificationToken(email)
 
     return {
         success: 'User Created Successfully',
