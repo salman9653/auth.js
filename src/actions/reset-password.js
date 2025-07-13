@@ -1,6 +1,8 @@
 "use server"
 
 import { getUserByEmail } from "@/data/user";
+import { sendPasswordResetEmail } from "@/lib/mail";
+import { generatePasswordResetToken } from "@/lib/tokens";
 import { ResetSchema } from "@/schemas/zodSchema";
 
 export const resetPasswordAction = async (formValue) => {
@@ -15,15 +17,16 @@ export const resetPasswordAction = async (formValue) => {
 
     const { email } = validate.data;
 
-    const existingUrser = await getUserByEmail(email);
-    if (!existingUrser) {
+    const existingUser = await getUserByEmail(email);
+    if (!existingUser) {
         return {
             error: 'Email not found!'
         }
     }
 
-    // Todo: Generate token and send email  
+    const passwordResetToken = await generatePasswordResetToken(email)
+    await sendPasswordResetEmail(passwordResetToken.email, passwordResetToken.token)
 
-    return { success: "Password Reset Email Sent!" }
+    return { success: 'Password reset email sent!' }
 
 }
