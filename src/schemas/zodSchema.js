@@ -1,5 +1,10 @@
 import z from "zod";
 
+// schema for user password reset form  validations
+export const ResetSchema = z.object({
+    email: z.string().email(),
+});
+
 // schema for user login validations
 export const LoginSchema = z.object({
     email: z.string().email(),

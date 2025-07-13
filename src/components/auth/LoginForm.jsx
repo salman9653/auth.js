@@ -19,6 +19,7 @@ import { FormError } from "@/components/FormError";
 import { FormSuccess } from "@/components/FormSuccess";
 import { loginFields } from "@/schemas/formFields";
 import { useRouter, useSearchParams } from "next/navigation";
+import Link from "next/link";
 
 export const LoginForm = () => {
   const router = useRouter();
@@ -79,6 +80,18 @@ export const LoginForm = () => {
                         disabled={isPending}
                       />
                     </FormControl>
+                    {name === "password" && (
+                      <div className="w-full flex justify-end">
+                        <Button
+                          variant="link"
+                          size="sm"
+                          asChild
+                          className="px-0 font-normal"
+                        >
+                          <Link href="/reset-password">Forgot password?</Link>
+                        </Button>
+                      </div>
+                    )}
                     <FormMessage />
                   </FormItem>
                 )}
