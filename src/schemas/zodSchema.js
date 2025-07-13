@@ -5,6 +5,11 @@ export const ResetSchema = z.object({
     email: z.string().email(),
 });
 
+// schema for user password reset form  validations
+export const NewPasswordSchema = z.object({
+    password: z.string().min(6, "Password must be at least 6 characters long"),
+});
+
 // schema for user login validations
 export const LoginSchema = z.object({
     email: z.string().email(),
