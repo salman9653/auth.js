@@ -2,6 +2,7 @@
 
 import { getUserByEmail } from "@/data/user";
 import { signIn } from "@/lib/auth";
+import { sendVerificationEmail } from "@/lib/mail";
 import { generateVerificationToken } from "@/lib/tokens";
 import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
 import { LoginSchema } from "@/schemas/zodSchema";
@@ -32,8 +33,6 @@ export async function loginAction(formValue) {
         await sendVerificationEmail(verificationToken.email, verificationToken.token)
         return { success: 'Confirmation email sent again' }
     }
-
-
 
     try {
         const user = await signIn("credentials", {
